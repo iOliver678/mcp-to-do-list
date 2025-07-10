@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  title     String
+  description String?
+  dueDate     DateTime?
+  priority    String?
+  status      String?
+  tags        String[]
+  attachments String[]
+  comments    String[]
+  subTasks    String[]
+  completed Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
